@@ -66,3 +66,59 @@
         Merge Array1 & Array2 to Array3
         Array3 = 9 8 8 7 6 6 5 3 3 3 2 2 1 1
 */
+
+#include <stdio.h>
+
+int main() {
+    
+    int n1 , n2 , temp = 0 ;
+
+    // สร้าง array ตัวแรก พร้อมรับค่า
+    printf ( "Enter element of Array1 :\n" ) ;
+    scanf ( "%d", &n1 ) ;
+    int array1[ n1 ] ;
+    for ( int i = 0 ; i < n1 ; i++ ) {
+        printf ( "--| Array1 [%d] :\n", i ) ;
+        scanf ( "%d", &array1[ i ] ) ;
+    } // end for
+
+    // สร้าง array ตัวที่ 2 พร้อมรับค่า
+    printf ( "Enter element of Array2 :\n" ) ;
+    scanf ( "%d", &n2 ) ;
+    int array2[ n2 ] ;
+    for ( int i = 0 ; i < n2 ; i++ ) {
+        printf ( "--| Array2 [%d] : \n", i ) ;
+        scanf ( "%d", &array2[ i ] ) ;
+    } // end for
+
+    // สร้าง array3 จากการรวมของ array1 และ array2
+    printf ( "\n" ) ;
+    int array3[ n1 + n2 ] ;
+    for ( int  i = 0 ; i < n1 ; i++ ) {
+        array3[ i ] = array1[ i ] ;
+    }
+    
+    for ( int i = n1 ; i < n1 + n2 ; i++ ) {
+        array3[ i ] = array2[ i - n1 ] ;
+    }
+    
+    // เรียงเลขจากมากไปหาน้อย
+    for ( int i = 0 ; i < n1 + n2 ; i++ ) {
+        for ( int k = i + 1 ; k < n1 + n2 ; k++ ) {
+            if ( array3[ i ] < array3[ k ] ) {
+                temp = array3[ i ] ;
+                array3[ i ] = array3[ k ] ;
+                array3[ k ] = temp ;
+            } // end if
+        } // end for
+    } // end for
+    
+    // แสดงค่า
+    printf ( "Merge Array1 & Array2 to Array3\n" ) ;
+    printf ( "Array3 =" ) ;
+    for ( int i = 0 ; i < n1 + n2 ; i++ ) {
+        printf( " %d", array3[ i ] ) ;
+    }
+    
+    return 0 ;
+} // end main
